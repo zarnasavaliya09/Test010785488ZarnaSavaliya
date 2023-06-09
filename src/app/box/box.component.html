@@ -1,0 +1,39 @@
+<div>
+  <h2>Add a Box</h2>
+  <div>
+    <label for="size">Size:</label>
+    <input id="size" type="number" [(ngModel)]="newBox.size" min="1" max="10">
+  </div>
+  <div>
+    <label for="description">Description:</label>
+    <textarea id="description" [(ngModel)]="newBox.description"></textarea>
+  </div>
+  <div>
+    <label for="shippingLabelCode">Shipping Label Code:</label>
+    <input id="shippingLabelCode" type="text" [(ngModel)]="newBox.shippingLabelCode">
+  </div>
+  <div>
+    <label for="recipient">Recipient:</label>
+    <input id="recipient" type="text" [(ngModel)]="newBox.recipient" readonly>
+  </div>
+  <div>
+    <label for="weight">Weight:</label>
+    <input id="weight" type="number" [(ngModel)]="newBox.weight" step="1">
+  </div>
+  <button (click)="addBox()">Add Box</button>
+</div>
+
+<hr>
+
+<div>
+  <h2>Box List</h2>
+  <div *ngFor="let box of boxList.reverse()">
+    <div [ngStyle]="{'border': '1px solid', 'padding': '10px', 'margin-bottom': '10px'}">
+      <p>Size: {{ box.size }}</p>
+      <p>Contents: {{ box.description }}</p>
+      <p>Shipping Label Code: {{ box.shippingLabelCode | uppercase }}</p>
+      <p>Recipient: <span [style.color]="'red'">{{ box.recipient || 'Your Name' }}</span></p>
+      <p [weightColor]="box.weight">Weight: {{ box.weight }}g</p>
+    </div>
+  </div>
+</div>
